@@ -1,0 +1,15 @@
+Source: pirem
+Section: unknown
+Priority: extra
+Maintainer: Marco Markgraf (Privat) <Marco.Markgraf@gmx.de>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 3.9.2
+Homepage: <insert the upstream URL, if relevant>
+
+Package: pirem
+Architecture: all
+Depends: ${misc:Depends}, python, python-gdata, python-dateutil, ttytter, sendemail, lynx-cur
+Description: reminds of events in google-calendar
+    This wrapper script fetches events from a google calendar
+    and sends reminders to twitter, mailinglists and the
+    Piraten-Freiburg-wiki.

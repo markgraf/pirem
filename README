@@ -1,0 +1,30 @@
+pirem.sh
+========
+
+pirem.sh is a wrapper script to pull data out of a google calendar and distribute
+the data this by twitter, mail and wiki-entries.
+
+It uses a slightly modded version of gcalcli for the pulling part,
+ttytter to send tweets, /bin/mail to send mail and lynx to poke a wikibot.
+
+
+gcalcli-pirem
+=============
+
+In order to avoid conflicts with the official gcalcli
+(see https://code.google.com/p/gcalcli/ ), I keep a renamed copy here.
+
+The only modification so far is that my version acceptis the option '--skript'
+and the "agenda" command produces tab-seperated output if this option is given.
+
+The modifications to gcalcli-2.1 were mostly done through try and error.
+I've never written any python before that.  It's working,
+but it's surely not as elegant as it could be.
+
+
+TODO
+====
+
+- I need to put some information on the wikibot in here.
+- Strip everything unneeded from gcalcli-pirem
+- Enhance _SkriptFriendly. Pretty Please?

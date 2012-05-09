@@ -1,0 +1,23 @@
+pirem (0.7.3) unstable; urgency=low
+
+  * send email via /usr/bin/mail if sendEmail is not available
+
+ -- Marco Markgraf (Privat) <Marco.Markgraf@gmx.de>  Wed, 09 May 2012 08:00:00 +0200
+
+pirem (0.7.2) unstable; urgency=low
+
+  * added missing "$", indentation, better quoting.
+
+ -- Marco Markgraf (Privat) <Marco.Markgraf@gmx.de>  Fri, 04 May 2012 14:20:00 +0200
+
+pirem (0.7.1) unstable; urgency=low
+
+  * some cleanup. Plus I need better commit-messages.
+
+ -- Marco Markgraf (Privat) <Marco.Markgraf@gmx.de>  Wed, 02 May 2012 16:00:00 +0200
+
+pirem (0.7) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Marco Markgraf (Privat) <Marco.Markgraf@gmx.de>  Sat, 28 Apr 2012 09:14:32 +0200
