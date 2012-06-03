@@ -4,7 +4,7 @@ Priority: extra
 Maintainer: Marco Markgraf (Privat) <Marco.Markgraf@gmx.de>
 Build-Depends: debhelper (>= 8.0.0)
 Standards-Version: 3.9.2
-Homepage: <insert the upstream URL, if relevant>
+Homepage: https://github.com/markgraf/pirem
 
 Package: pirem
 Architecture: all
