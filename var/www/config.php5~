@@ -14,4 +14,4 @@ $vorlage["ort"] = "Vorlage:Ort";
 
 $adminmail = "admin@example.com";
 
-$botpassword = "8aa41953fba52afc00abe8cdea0cf376";
+$botpassword="geheim"
