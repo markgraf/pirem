@@ -179,7 +179,7 @@ function __debug () {
 
 function __agenda () {
     local mystart="$1" myend="$2"
-    gcalcli-pirem --user $CALUSER --pw "$( base64 -d $CALPW )" --cal $CALENDAR --24hr --nc --skript agenda $mystart $myend | grep .
+    gcalcli-pirem --user $CALUSER --pw "$( base64 -d $CALPW )" --cal $CALENDAR --24hr --nc --tsv agenda $mystart $myend | grep .
 } # ----------  end of function __agenda  ----------
 
 function __tweet () {
