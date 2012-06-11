@@ -22,9 +22,20 @@ I've never written any python before that.  It's working,
 but it's surely not as elegant as it could be.
 
 
+wikibot
+========
+The wikibot part is located in /var/www/pirem, is written in PHP and uses the 
+Wikibot class made by Jarry1250. The original class can be found here:
+http://en.wikipedia.org/wiki/User:LivingBot/Wikibot.php5
+This version has some minor modifications, e.g. it uses HTTP 1.0 as the
+MediaWiki is only compatible with this version.
+It expects a GET call on the /var/www/pirem/bot.php5 file as following:
+bot.php5?date=...&time=...&location=...&title=...&content=...$botpassword=...
+The configuration, e.g. which Template it should use, is stored in config.php5.
+
+
 TODO
 ====
 
-- I need to put some information on the wikibot in here.
 - Strip everything unneeded from gcalcli-pirem
 - Enhance _SkriptFriendly. Pretty Please?
