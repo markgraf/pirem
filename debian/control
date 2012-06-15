@@ -8,7 +8,8 @@ Homepage: https://github.com/markgraf/pirem
 
 Package: pirem
 Architecture: all
-Depends: ${misc:Depends}, python, python-gdata, python-dateutil, ttytter, sendemail, lynx-cur
+Depends: ${misc:Depends}, python, python-gdata, python-dateutil, ttytter, lynx-cur, php5
+Suggests: sendemail
 Description: reminds of events in google-calendar
     This wrapper script fetches events from a google calendar
     and sends reminders to twitter, mailinglists and the
