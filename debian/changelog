@@ -2,7 +2,7 @@ pirem (0.7.4) unstable; urgency=low
 
   * added dependency to php5 for wikibot, removed dependencey on sendEmail
 
- -- Marco Markgraf (Privat) <Marco.Markgraf@gmx.de>  Fri, 15 Jun 13:00:00 +0200
+ -- Marco Markgraf (Privat) <Marco.Markgraf@gmx.de>  Fri, 15 Jun 2012 13:00:00 +0200
 
 pirem (0.7.3) unstable; urgency=low
 
