@@ -1,3 +1,9 @@
+pirem (0.7.5) unstable; urgency=low
+
+  * added template for cronjob in /etc/cron.d
+
+ -- Marco Markgraf (Privat) <Marco.Markgraf@gmx.de>  Sat, 16 Jun 2012 14:00:00 +0200
+
 pirem (0.7.4) unstable; urgency=low
 
   * added dependency to php5 for wikibot, removed dependencey on sendEmail
