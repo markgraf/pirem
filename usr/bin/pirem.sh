@@ -179,6 +179,7 @@ function __debug () {
 
 function __agenda () {
     local mystart="$1" myend="$2"
+    #__debug "[$FUNCNAME] start: $mystart end: $myend"
     gcalcli-pirem --user $CALUSER --pw "$( base64 -d $CALPW )" --cal $CALENDAR --24hr --nc --tsv agenda $mystart $myend | grep .
 } # ----------  end of function __agenda  ----------
 
@@ -215,13 +216,13 @@ function __ml () {
         inreplyto="$RETVAL"
     fi
 
-	if [[ -x /usr/bin/sendemail ]] then;
+	if [[ -x /usr/bin/sendemail ]]; then
 		__debug "$FUNCNAME: at $mailtime <<< sendemail -q $MAILSERVER $MAILUSER $MAILPASSWORD \
 		-f $FROM -t $MAILTO \
 		-u '$subject' -m '$message' \
 		-o message-charset=utf-8 \
 		-o message-header='Message-ID: $msg_ID' \
-		-o message-header=In-Reply-To: $inreplyto'"
+		-o message-header='In-Reply-To: $inreplyto'"
 
 		if [[ "$NOOP" == 'false' ]] ; then
             #NOTE: if $inreplyto is empty, the In-Reply-To-Header will not appear,
@@ -252,7 +253,7 @@ function __wiki () {
 
     local mydate="$1" mytime="$2" mytitle="$3" mylocation="$4"
     local urldata="date=${mydate}&time=${mytime}&title=${mytitle}&location=${mylocation}&password=$WIKIBOTPASS"
-    local encodedUrl=$(echo "$urldata" | sed -f ${SHAREDIR}urlencode.sed)
+    local encodedUrl=$(echo "$urldata" | sed -f ${SHAREDIR}/urlencode.sed)
     local url="${WIKIBOT}${urldata}"
     __debug "[$FUNCNAME] \$url = \"$url\""
     if [[ $NOOP == 'false' ]]; then
@@ -263,16 +264,18 @@ function __wiki () {
 function __daily () {
     local tweet=''
     while IFS=$'\t' read -r mydate mystart myend mytitle myplace myevent; do
+	__debug "[$FUNCNAME] $mydate $mystart $mytitle"
         # 'Kalenderwoche' und Feiertage überspringen
         if [[ "$myplace" == None && "$myevent" == None ]] ; then
             continue
         fi
-        tweet="${myevent%%\\n*}"
+        #tweet="${myevent%%\\n*}"
+        tweet="$mydate $mystart $mytitle"
         # shorten tweet to 140 chars
         let "maxtweetlength=139-${#TWEETAS}"
         [[ ${#tweet} -gt $maxtweetlength ]] && tweet="${tweet:0:$maxtweetlength}"
         case "$mydate" in
-            $TODAY)
+            "$TODAY")
                 updatetime=$(date -d "$SOONER $mystart" +%R)
                 if [[ "$EARLYPOST" < "$updatetime" ]]; then
                     __tweet "$EARLYPOST" "$tweet"
@@ -281,11 +284,11 @@ function __daily () {
                 # today, I reply to the mail I sent "two_days"
                 __ml "$EARLYPOST" "$mydate" "Re: $mytitle" "$myevent"
                 ;;
-            $TOMMOROW)
+            "$TOMMOROW")
                 __tweet "$MIDDLEPOST" "$tweet"
                 __tweet "$LATEPOST" "$tweet"
                 ;;
-            $TWODAYS)
+            "$TWODAYS")
                 __tweet "$LATEPOST" "$tweet"
                 __ml "$EARLYPOST" "$mydate" "$mytitle" "$myevent"
                 ;;
@@ -312,7 +315,8 @@ function __weekly () {
         echo -e "$myevent \n\n"|fold -s -w 74| sed -e 's/^/    /' -e 's/[ \t]*$//' >> $MESSAGEFILE
     done < $TEMPFILE
     message="$(cat $MESSAGEFILE)"
-    __ml "$EARLYPOST" "$MONDAY" "$WEEKLYTITLE" "$message"
+    __debug "[$FUNCNAME] __ml $EARLYPOST $MONDAY $WEEKLYTITLE $message"
+    __ml "$EARLYPOST" "$MONDAY" "$WEEKLYSUBJECT" "$message"
 } # ----------  end of function __weekly  ----------
 
 function __main () {
