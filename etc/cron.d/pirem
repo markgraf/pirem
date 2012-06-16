@@ -1,0 +1,10 @@
+# /etc/cron.d/pirem: crontab entries for the pirem package
+
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# run daily pirem-job 
+#30 0 * * * root /usr/bin/pirem.sh -C /path/to/your/config
+
+#run weekly pirem-job every friday night
+#30 23 * * 5 root /usr/bin/pirem.sh -C /path/to/your/config --weekly

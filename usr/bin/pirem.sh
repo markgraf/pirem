@@ -113,7 +113,7 @@ function __fetch_opts () {
                 exit 0
                 ;;
             -V|--version)
-                echo "PirateReminder V0.7.3"
+                echo "PirateReminder V0.7.5"
                 exit 0
                 ;;
             -C|--config)
