@@ -1,0 +1,4 @@
+* if ttytter cant find the file you pass as $TTYTTERAUTH,
+  ttytter will not exit and then spam your filesystem.
+  Note: ttytter will prefix the value of $TTYTTERAUTH with
+  '.ttytterkey' so leave that bit out of the config-file

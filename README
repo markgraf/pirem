@@ -89,10 +89,3 @@ CONFIG
 ======
 You need to add the pirem.sh-user to /etc/at.allow and /etc/cron.allow,
 or the script will not work.
-
-
-TODO
-====
-
-- Strip everything unneeded from gcalcli-pirem
-- Enhance _tsv. Pretty Please?
