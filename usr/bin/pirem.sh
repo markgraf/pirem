@@ -96,7 +96,7 @@ cat <<-END_USAGE
     set up ttytter
     set up your google-calender, of course...
     set up /etc/at.allow and /etc/cron.allow
-    
+
 [1mBUGS:[0m
     send bug-reports to marco-m-aus-f@gmx.net
 
@@ -223,7 +223,8 @@ function __ml () {
 		-u '$subject' -m '$message' \
 		-o message-charset=utf-8 \
 		-o message-header='Message-ID: $msg_ID' \
-		-o message-header='In-Reply-To: $inreplyto'"
+		-o message-header='In-Reply-To: $inreplyto'
+        -o message-header='X-Pirem: $XPIREM'"
 
 		if [[ "$NOOP" == 'false' ]] ; then
             #NOTE: if $inreplyto is empty, the In-Reply-To-Header will not appear,
@@ -233,7 +234,8 @@ function __ml () {
             -u '$subject' -m '$message' \
             -o message-charset=utf-8 \
             -o message-header='Message-ID: $msg_ID' \
-            -o message-header='In-Reply-To: $inreplyto'"
+            -o message-header='In-Reply-To: $inreplyto'
+            -o message-header='X-Pirem: $XPIREM'"
 		fi
 	else
 		# serveradmin needs to set up user/emailadress for the script!
