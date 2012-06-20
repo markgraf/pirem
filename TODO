@@ -1,0 +1,11 @@
+tweets:
+    instead of spawning dozens of atjobs, create a file containing 1 tweet per line,
+    ending with /quit, then ttytter -script $tweetfile
+    use atjobs for tweets 30min prior to event?
+
+    find a way to include link to calendar-event in tweets
+
+mail:
+    develop daily digest instead of single mails?
+
+
