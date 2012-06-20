@@ -95,7 +95,8 @@ cat <<-END_USAGE
     set up /etc/pirem/pirem.conf or an alternate conf to pass with -C
     set up ttytter
     set up your google-calender, of course...
-
+    set up /etc/at.allow and /etc/cron.allow
+    
 [1mBUGS:[0m
     send bug-reports to marco-m-aus-f@gmx.net
 
@@ -260,6 +261,34 @@ function __wiki () {
         lynx -dump -cmd_script=${SHAREDIR}lynx.cmd "$url"
     fi
 } # ----------  end of function __wiki  ----------
+
+
+function __tweetmsg () {
+# generate the message to tweet,
+# with message-template depending on date/time
+
+#mylink=https://www.google.com/calendar/feeds/pirate.reminder@googlemail.com/private/full/$eventID
+local tweet='' mydate="$1" mystart="$2" mytitle="$3"
+case "$mydate" in
+    "$TODAY")
+        tweet="Heute $mystart: $mytitle $CALENDARLINK"
+        tweet="Gleich: $mytitle $mylink $CALENDARLINK"
+
+        ;;
+    "$TOMMOROW")
+        tweet="Morgen $mystart: $mytitle $CALENDARLINK"
+
+        ;;
+    "$TWODAYS")
+        tweet="$mydate $mystart: $mytitle $CALENDARLINK"
+
+        ;;
+    *)
+
+        ;;
+esac    # --- end of case ---
+} # ----------  end of function __tweetmsg  ----------
+
 
 function __daily () {
     local tweet=''

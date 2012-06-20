@@ -7,6 +7,58 @@ the data this by twitter, mail and wiki-entries.
 It uses a slightly modded version of gcalcli for the pulling part,
 ttytter to send tweets, /bin/mail to send mail and lynx to poke a wikibot.
 
+--help
+======
+USAGE: ./pirem.sh -[hCDNVcuptw] <parameters>
+
+    This script is meant to be run as a cronjob, daily at 00:30.
+    Maybe you want to run in on Friday 23:30 with the -w option, too.
+    Settings are done in __init , but you can pass some as options:
+
+OPTIONS:
+    -h    --help
+        Print this usage-message and exit
+
+    -C    --config <path>
+        Set alternate /path/to/config-file. Use '-C' as the first of
+        your options, to avoid further opts being overwritten.
+
+    -D    --debug
+        Print debug-info during execution.
+
+    -N    --noop
+        Do not send any tweets, mails...; aka 'dry-run'.                                                                            
+                                                                                                                                    
+    -V    --version                                                                                                                 
+        Print version-information and exit.                                                                                         
+                                                                                                                                    
+    -c    --cal <name>                                                                                                              
+        Select your google-calendar by name. If not set, will use 'default'.                                                        
+                                                                                                                                    
+    -u    --user <user>                                                                                                             
+        Your google-username.
+
+    -p    --password <path>
+        The path to your base64-coded password-file.
+
+    -r    --mailrc=<path>
+        Path to rcfile for /usr/bin/mail
+
+    -t    --ttytterauth
+        Name the keyfile for ttytter.
+
+    -w    --weekly
+        Send an agenda of next weeks events.
+
+FORMAT OF CALENDAR-ENTRIES
+    Calendar entries need to start with a short paragraph to be tweeted,
+    followed by an empty line and an optional more detailed description.
+
+BEFORE YOU RUN IT THE FIRST TIME
+    set up /etc/pirem/pirem.conf or an alternate conf to pass with -C
+    set up ttytter
+    set up your google-calender, of course...
+    set up /etc/at.allow and /etc/cron.allow
 
 gcalcli-pirem
 =============
@@ -32,6 +84,11 @@ MediaWiki is only compatible with this version.
 It expects a GET call on the /var/www/pirem/bot.php5 file as following:
 bot.php5?date=...&time=...&location=...&title=...&content=...$botpassword=...
 The configuration, e.g. which Template it should use, is stored in config.php5.
+
+CONFIG
+======
+You need to add the pirem.sh-user to /etc/at.allow and /etc/cron.allow,
+or the script will not work.
 
 
 TODO
