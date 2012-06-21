@@ -220,7 +220,7 @@ function __ml () {
 	if [[ -x /usr/bin/sendemail ]]; then
 		__debug "$FUNCNAME: at $mailtime <<< sendemail -q $MAILSERVER $MAILUSER $MAILPASSWORD \
 		-f $FROM -t $MAILTO \
-		-u '$subject' -m '$message' \
+		-u '$subject' -m '$message $MAILFOOT' \
 		-o message-charset=utf-8 \
 		-o message-header='Message-ID: $msg_ID' \
 		-o message-header='In-Reply-To: $inreplyto' \
@@ -231,7 +231,7 @@ function __ml () {
             #      which is a good thing.
             at $mailtime <<< "sendemail -q $MAILSERVER $MAILUSER $MAILPASSWORD \
             -f $FROM -t $MAILTO \
-            -u '$subject' -m '$message' \
+            -u '$subject' -m '$message $MAILFOOT' \
             -o message-charset=utf-8 \
             -o message-header='Message-ID: $msg_ID' \
             -o message-header='In-Reply-To: $inreplyto' \
@@ -270,25 +270,26 @@ function __tweetmsg () {
 # with message-template depending on date/time
 
 #mylink=https://www.google.com/calendar/feeds/pirate.reminder@googlemail.com/private/full/$eventID
+#much too long :-(
+
 local tweet='' mydate="$1" mystart="$2" mytitle="$3"
 case "$mydate" in
     "$TODAY")
         tweet="Heute $mystart: $mytitle $CALENDARLINK"
-        tweet="Gleich: $mytitle $mylink $CALENDARLINK"
-
         ;;
     "$TOMMOROW")
         tweet="Morgen $mystart: $mytitle $CALENDARLINK"
-
         ;;
     "$TWODAYS")
-        tweet="$mydate $mystart: $mytitle $CALENDARLINK"
-
+        newdate=$(date -d $mydate +%d.%m.)
+        tweet="$newdate $mystart: $mytitle $CALENDARLINK"
         ;;
     *)
-
+        echo 'ERROR: something went wrong generating this tweet'
+        exit 1
         ;;
 esac    # --- end of case ---
+RETVAL="$tweet"
 } # ----------  end of function __tweetmsg  ----------
 
 
@@ -300,8 +301,8 @@ function __daily () {
         if [[ "$myplace" == None && "$myevent" == None ]] ; then
             continue
         fi
-        #tweet="${myevent%%\\n*}"
-        tweet="$mydate $mystart $mytitle"
+        __tweetmsg "$mydate" "$mystart" "$mytitle"
+        tweet="$RETVAL"
         # shorten tweet to 140 chars
         let "maxtweetlength=139-${#TWEETAS}"
         [[ ${#tweet} -gt $maxtweetlength ]] && tweet="${tweet:0:$maxtweetlength}"
