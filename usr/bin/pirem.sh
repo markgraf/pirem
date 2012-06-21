@@ -223,7 +223,7 @@ function __ml () {
 		-u '$subject' -m '$message' \
 		-o message-charset=utf-8 \
 		-o message-header='Message-ID: $msg_ID' \
-		-o message-header='In-Reply-To: $inreplyto'
+		-o message-header='In-Reply-To: $inreplyto' \
         -o message-header='X-Pirem: $XPIREM'"
 
 		if [[ "$NOOP" == 'false' ]] ; then
@@ -234,7 +234,7 @@ function __ml () {
             -u '$subject' -m '$message' \
             -o message-charset=utf-8 \
             -o message-header='Message-ID: $msg_ID' \
-            -o message-header='In-Reply-To: $inreplyto'
+            -o message-header='In-Reply-To: $inreplyto' \
             -o message-header='X-Pirem: $XPIREM'"
 		fi
 	else
