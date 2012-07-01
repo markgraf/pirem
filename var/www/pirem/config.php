@@ -24,4 +24,4 @@ $vorlage["ort"] = $settings["WIKIPLACETEMPLATE"];
 
 $adminmail = $settings["WIKIDEBUGADMINMAIL"];
 
-$botpassword = $settings["WIKIBOTPASSWORD"];
+$botpassword = $settings["WIKIBOTPASS"];
